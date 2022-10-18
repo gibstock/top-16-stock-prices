@@ -24,6 +24,7 @@ module.exports = {
           primary5: '#f3f8ff',
           gray11: '#000000',
           gray8: '#616161',
+          color1: '#df1525',
           color2: '#049c6b',
           bg2: '#e8ffeb'
         },
@@ -31,9 +32,11 @@ module.exports = {
           primary5: '#01060d',
           gray11: '#fefefe',
           gray8: '#efefef',
+          color1: '#ff9b9b',
           color2: '#07f8b5',
           bg2: '#2a4037'
-        }
+        },
+        shadow: 'rgba(0,0,0,0.1)'
       }
     },
   },
