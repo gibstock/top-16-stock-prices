@@ -14,10 +14,10 @@ export const MainStage = () => {
   console.log(nameResults, 'name')
 
   return (
-    <div className='grid grid-cols-4 mt-6 gap-3'>
+    <div className='lg:grid lg:grid-cols-4 mt-6 gap-3 flex flex-col'>
       {
         queryResults.map((result: any, i: number) => {
-          return <div className=' h-44 border rounded-xl p-4 bg-white shadow-[0px_1px_4px] shadow-shadow' key={i}>
+          return <div className=' h-44 rounded-xl p-4 bg-white dark:bg-dark-gray0 shadow-[0px_1px_4px] shadow-light-shadow dark:shadow-dark-shadow' key={i}>
             < Card tickers={tickers} result={result} index={i} name={nameResults[i]}/>
           </div>
         })

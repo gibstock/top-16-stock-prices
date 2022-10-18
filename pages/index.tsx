@@ -1,11 +1,21 @@
+import { useEffect } from 'react'
 import type { NextPage } from 'next'
-// import { Header } from '../components/header/header'
-// import { MainStage } from '../components/mainStage/mainStage'
 import { header, main } from '../components'
+import { useDarkModeStore } from '../store/store'
 
 const Home: NextPage = () => {
+  const dark = useDarkModeStore(state => state.dark)
+
+  useEffect(() => {
+    if(dark) {
+      document.querySelector('html')?.classList.add('dark')
+    } else {
+      document.querySelector('html')?.classList.remove('dark')
+    }
+  }, [dark])
+
   return (
-    <div className="h-screen w-full p-12 bg-light-primary5 dark:bg-dark-primary5">
+    <div className=" w-full p-12 ">
         <header.Header />
         <main.MainStage />
     </div>
