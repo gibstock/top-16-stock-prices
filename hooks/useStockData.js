@@ -8,10 +8,14 @@ const fetchStockData = (symbol) => {
 
 export const useStockData = (symbols) => {
   return useQueries(
-    symbols.map( symbol => {
+    symbols.map( (symbol, i) => {
       return {
         queryKey: ['quote', symbol],
-        queryFn: () => fetchStockData(symbol)
+        queryFn: () => fetchStockData(symbol),
+        refetchInterval: 10000,
+        retry: false,
+        onSuccess: (data) => {console.log('Successfully fetched', data, i)},
+        onError: (error) => {console.log('There was an error', error, i)}
       }
     })
   )
