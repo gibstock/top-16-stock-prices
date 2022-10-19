@@ -11,8 +11,6 @@ export const MainStage = () => {
   const queryResults: any | unknown = useStockData(tickers)
   const nameResults: any | unknown = useStockNameData(tickers)
 
-  console.log(nameResults, 'name')
-
   return (
     <div className='lg:grid lg:grid-cols-4 mt-6 gap-3 flex flex-col'>
       {
