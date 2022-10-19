@@ -17,7 +17,7 @@ export const useStockData = (symbols) => {
       return {
         queryKey: ['quote', symbol],
         queryFn: () => fetchStockData(symbol),
-        // refetchInterval: 10000,
+        refetchInterval: 10000,
         retry: false,
         onSuccess: (data) => {console.log('Successfully fetched', data, i)},
         onError: (error) => {console.log('There was an error', error, i)},
