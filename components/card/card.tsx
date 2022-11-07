@@ -9,7 +9,9 @@ type AppProps = {
 
 type ObjectData = {
   data: QuoteData,
-  isLoading: boolean
+  isInitialLoading: boolean,
+  isError: boolean,
+  error: Error
 }
 
 type QuoteData = {
@@ -22,7 +24,9 @@ type QuoteData = {
 
 type DataResult = {
   data: NameData,
-  isLoading: boolean
+  isInitialLoading: boolean,
+  isError: boolean,
+  error: Error
 }
 
 type NameData = {
@@ -32,19 +36,25 @@ type NameData = {
 }
 export const Card = ({tickers, result, index, name}: AppProps) => {
 
-  const { isLoading: nameLoading } = name
-  const { isLoading: resultLoading } = result
+  const { isInitialLoading: nameLoading, isError: nameIsError, error: nameError } = name
+  const { isInitialLoading: resultLoading, isError: resultIsError, error: resultError} = result
 
   if(nameLoading || resultLoading) return <h2>Loading...</h2>
+  if(nameIsError) {
+    console.log(nameError.message)
+  }
+  if(resultIsError) {
+    console.log(resultError.message)
+  }
 
   return (
     <div className='h-full flex flex-col items-center justify-between'>
       <div className='w-full flex flex-row items-center justify-between'>
         <div>
           <div className='font-semibold text-base text-light-gray11 dark:text-dark-gray11'>{tickers[index]}</div>
-          <div className='text-light-gray8 dark:text-dark-gray8'>{name?.data.data.name}</div>
+          <div className='text-light-gray8 dark:text-dark-gray8'>{name?.data?.data.name}</div>
         </div>
-        <div className='font-semibold text-base text-light-gray11 dark:text-dark-gray11'>${result?.data.data.c}</div>
+        <div className='font-semibold text-base text-light-gray11 dark:text-dark-gray11'>${result?.data?.data.c}</div>
       </div>
       <div className='w-full flex flex-row items-center justify-between'>
         <div className='text-light-gray8 dark:text-dark-gray8'>Daily</div>
