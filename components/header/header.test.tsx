@@ -4,17 +4,13 @@ import { Header } from "./header";
 describe('Header', () => {
   test('Home Renders correctly', () => {
     render(<Header />)
-    const homeHeaderElement = screen.getByRole('heading')
+    const homeHeaderElement = screen.getByText('Stock Chops', {
+      exact: true
+    })
     expect(homeHeaderElement).toBeInTheDocument()
   })
 
-  test('Renders dark mode switch when in light mode', () => {
-    render(<Header />)
-    const darkModeToggleElement = screen.getByText('Dark Mode', {
-      exact: true,
-    })
-    expect(darkModeToggleElement).toBeInTheDocument()
-  })
+  
 
   test('Light mode text should not be visible', () => {
     render(<Header />)
