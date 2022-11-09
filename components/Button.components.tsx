@@ -37,8 +37,5 @@ export const Button = ({ children, rounded, version, onClick, size, px, py }: Pr
 
   return (
     <>{buttonVersion()}</>
-    // <button className="bg-blueBtn text-white px-5 py-3 rounded-xl font-medium text-xl" style={{borderRadius: rounded}}>{children}</button>
-    // <button className="bg-blueBtn text-white px-5 py-3 rounded-xl font-medium text-xl" style={{borderRadius: rounded}} onClick={click? click : () => {}}>{children}</button>
-    // ignore this line
   );
 };

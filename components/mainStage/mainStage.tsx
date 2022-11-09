@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { Card } from '../card'
-// import { Modal } from '../modal/modal'
 import { Modal } from '../modal'
 
 type AppProps = {
@@ -13,13 +12,9 @@ type AppProps = {
 
 
 export const MainStage = ({listOfSymbols, tickerList, setTickerList, queryResults, nameResults}: AppProps) => {
-  // const [tickerSymbols, setTickerSymbols] = useState(tickerList)
   const [launchModal, setLaunchModal] = useState(false)
   const [currentSymbol, setCurrentSymbol] = useState('')
-  // const [symbolsList, setSymbolsList] = useState([])
 
-  // const queryResults: any | unknown = useStockData(tickerSymbols)
-  // const nameResults: any | unknown = useStockNameData(tickerSymbols)
   const { isInitialLoading: queryLoading} = queryResults
   const { isInitialLoading: nameLoading} = nameResults
 
@@ -53,7 +48,6 @@ export const MainStage = ({listOfSymbols, tickerList, setTickerList, queryResult
           setTickerList={setTickerList}
         />
       }
-      {/* {launchModal && <Modal curr={currentSymbol} setCurrentSymbol={setCurrentSymbol} setTickerSymbols={setTickerSymbols} tickerSymbols={tickerSymbols} setLaunchModal={setLaunchModal} listOfSymbols={listOfSymbols}/>} */}
     </div>
   )
 }
