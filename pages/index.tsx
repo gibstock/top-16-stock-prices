@@ -1,32 +1,60 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import type { NextPage } from 'next'
-import { header, main } from '../components'
+import { header, main, footer } from '../components'
 import { useDarkModeStore } from '../store/store'
-import { useSymbolData } from '../hooks/useStockData'
+import { useNewQuoteStore } from '../store/store'
+import { useSymbolData, useStockData, useStockNameData } from '../hooks/useStockData'
+// import { useStockData } from '../hooks/useStockData'
 import { flattenSymbolArray } from '../utils/flattenArray'
 
+const tickers = ['AAPL', 'MSFT', 'AMZN', 'TSLA', 'GOOGL', 'GOOG', 'BRK.B', 'UNH','JNJ', 'XOM', 'JPM', 'META', 'V', 'PG', 'NVDA', 'HD']
+
 const Home: NextPage = () => {
+  const [ tickerList, setTickerList ] = useState(tickers)
   const dark = useDarkModeStore(state => state.dark)
+  const userSymbolList = useNewQuoteStore(state => state.userSymbols)
+
+  const queryResults: any | unknown = useStockData(tickerList)
+  const nameResults: any | unknown = useStockNameData(tickerList)
+
+
   const { data, isInitialLoading} = useSymbolData()
 
+
   useEffect(() => {
-    if(dark) {
-      document.querySelector('html')?.classList.add('dark')
-    } else {
-      document.querySelector('html')?.classList.remove('dark')
+    const darkCheck = () => {
+      if(dark) {
+        document.querySelector('html')?.classList.add('dark')
+      } else {
+        document.querySelector('html')?.classList.remove('dark')
+      }
     }
-  }, [dark])
+    const userSymbolCheck = () => {
+      if(userSymbolList.length > 0) {
+        setTickerList(userSymbolList)
+      }
+    }
+    darkCheck()
+    userSymbolCheck()
+  }, [dark, tickerList])
 
   
-  if(isInitialLoading) return <h2>Data Loading...</h2>
+  if(isInitialLoading) return <h2>Data is Loading...</h2>
   
   const listOfSymbols = flattenSymbolArray(data).sort()
 
 
   return (
-    <div className=" w-full p-4 md:p-12 ">
+    <div className=" w-full p-4 md:px-12 ">
         <header.Header />
-        <main.MainStage listOfSymbols={listOfSymbols}/>
+        <main.MainStage 
+          listOfSymbols={listOfSymbols} 
+          tickerList={tickerList} 
+          queryResults={queryResults}
+          nameResults={nameResults}
+          setTickerList={setTickerList}
+        />
+        <footer.Footer />
     </div>
   )
 }

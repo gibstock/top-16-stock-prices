@@ -9,7 +9,7 @@ let darkModestore = (set) => ({
 let newQuoteStore = (set) => ({
   newQuote: '',
   userSymbols: [],
-  setUserSymbols: (tickers) => set(() => ({userSymbols: [...userSymbols]})),
+  setUserSymbols: (tickers) => set(() => ({userSymbols: [...tickers]})),
   addNewQuote: (symbol) => set(() => ({ newQuote: symbol}))
 })
 

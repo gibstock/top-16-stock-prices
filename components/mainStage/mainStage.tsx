@@ -1,27 +1,25 @@
-import React, {useState, useEffect} from 'react'
-import { useStockData, useStockNameData} from '../../hooks/useStockData'
-import { useNewQuoteStore } from '../../store/store'
+import React, {useState} from 'react'
 import { Card } from '../card'
 // import { Modal } from '../modal/modal'
 import { Modal } from '../modal'
 
 type AppProps = {
-  listOfSymbols: string[]
+  listOfSymbols: string[];
+  tickerList: string[];
+  setTickerList: (set: string[]) => void;
+  queryResults: any | unknown;
+  nameResults: any | unknown;
 }
 
-const tickers = ['AAPL', 'MSFT', 'AMZN', 'TSLA', 'GOOGL', 'GOOG', 'BRK.B', 'UNH','JNJ', 'XOM', 'JPM', 'META', 'V', 'PG', 'NVDA', 'HD']
 
-export const MainStage = ({listOfSymbols}: AppProps) => {
-  const [tickerSymbols, setTickerSymbols] = useState(tickers)
+export const MainStage = ({listOfSymbols, tickerList, setTickerList, queryResults, nameResults}: AppProps) => {
+  // const [tickerSymbols, setTickerSymbols] = useState(tickerList)
   const [launchModal, setLaunchModal] = useState(false)
   const [currentSymbol, setCurrentSymbol] = useState('')
   // const [symbolsList, setSymbolsList] = useState([])
 
-  // const updatedSymbol = useNewQuoteStore(state => state.newQuote)
-
-  const queryResults: any | unknown = useStockData(tickerSymbols)
-  const nameResults: any | unknown = useStockNameData(tickerSymbols)
-  // const {data: symbolsListResults, isInitialLoading: symbolLoading, isError, error} = useSymbolData()
+  // const queryResults: any | unknown = useStockData(tickerSymbols)
+  // const nameResults: any | unknown = useStockNameData(tickerSymbols)
   const { isInitialLoading: queryLoading} = queryResults
   const { isInitialLoading: nameLoading} = nameResults
 
@@ -41,11 +39,21 @@ export const MainStage = ({listOfSymbols}: AppProps) => {
           return ( 
             //@ts-ignore
             <div className='h-44 rounded-xl p-4 bg-white dark:bg-dark-gray0 shadow-[0px_1px_4px] shadow-light-shadow dark:shadow-dark-shadow' key={i}>
-              <Card handleClick={handleClick} tickers={tickerSymbols} result={result} index={i} name={nameResults[i]}/>
+              <Card handleClick={handleClick} tickers={tickerList} result={result} index={i} name={nameResults[i]}/>
             </div>
         )})
       }
-      {launchModal && <Modal curr={currentSymbol} setCurrentSymbol={setCurrentSymbol} setTickerSymbols={setTickerSymbols} tickerSymbols={tickerSymbols} setLaunchModal={setLaunchModal} listOfSymbols={listOfSymbols}/>}
+      {launchModal && 
+        <Modal 
+          curr={currentSymbol} 
+          setCurrentSymbol={setCurrentSymbol} 
+          tickerSymbols={tickerList} 
+          setLaunchModal={setLaunchModal} 
+          listOfSymbols={listOfSymbols}
+          setTickerList={setTickerList}
+        />
+      }
+      {/* {launchModal && <Modal curr={currentSymbol} setCurrentSymbol={setCurrentSymbol} setTickerSymbols={setTickerSymbols} tickerSymbols={tickerSymbols} setLaunchModal={setLaunchModal} listOfSymbols={listOfSymbols}/>} */}
     </div>
   )
 }
