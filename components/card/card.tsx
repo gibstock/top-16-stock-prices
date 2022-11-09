@@ -1,10 +1,12 @@
 import React from 'react'
+import {AiOutlineArrowLeft} from 'react-icons/ai'
 
 type AppProps = {
   tickers: string[],
   result: ObjectData,
   index: number,
-  name: DataResult
+  name: DataResult,
+  handleClick: (e: React.MouseEvent<HTMLElement>) => void
 }
 
 type ObjectData = {
@@ -34,7 +36,7 @@ type NameData = {
     name: string;
   }
 }
-export const Card = ({tickers, result, index, name}: AppProps) => {
+export const Card = ({tickers, result, index, name, handleClick}: AppProps) => {
 
   const { isInitialLoading: nameLoading, isError: nameIsError, error: nameError } = name
   const { isInitialLoading: resultLoading, isError: resultIsError, error: resultError} = result
@@ -44,14 +46,17 @@ export const Card = ({tickers, result, index, name}: AppProps) => {
     console.log(nameError.message)
   }
   if(resultIsError) {
-    console.log(resultError.message)
+    console.log("result error", resultError.message)
   }
 
   return (
     <div className='h-full flex flex-col items-center justify-between'>
       <div className='w-full flex flex-row items-center justify-between'>
-        <div>
-          <div className='font-semibold text-base text-light-gray11 dark:text-dark-gray11'>{tickers[index]}</div>
+        <div className='flex flex-col items-start'>
+          <div className='flex flex-row justify-center items-center gap-2'>
+            <div className='font-semibold text-base text-light-gray11 dark:text-dark-gray11 outline outline-1 outline-black px-1 rounded-lg cursor-pointer shadow-[0px_3px_4px] shadow-light-shadow  dark:shadow-dark-shadow hover:bg-light-primary5' onClick={handleClick} data-symbol={tickers[index]}>{tickers[index]}</div>
+            <div className='flex flex-row items-center gap-2 text-xs text-[#a0a0a0]'><AiOutlineArrowLeft /> Click to change</div>
+          </div>
           <div className='text-light-gray8 dark:text-dark-gray8'>{name?.data?.data.name}</div>
         </div>
         <div className='font-semibold text-base text-light-gray11 dark:text-dark-gray11'>${result?.data?.data.c}</div>

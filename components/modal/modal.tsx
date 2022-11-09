@@ -46,8 +46,6 @@ export const Modal = ({curr, setCurrentSymbol, setTickerSymbols, tickerSymbols, 
   const handleAddQuoteClick = async (e: any) => {
     e.preventDefault()
     let searchTerm = e.target[0].value.toUpperCase()
-    // console.log(testArr.sort())
-    // console.log("data", testArr.indexOf('AMC'))
     if(binarySearch(listOfSymbols, e.target[0].value.toUpperCase()) === -1) {
       alert('Not a valid US Stock Exchange symbol')
     } else {
