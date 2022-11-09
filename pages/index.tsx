@@ -4,7 +4,6 @@ import { header, main, footer } from '../components'
 import { useDarkModeStore } from '../store/store'
 import { useNewQuoteStore } from '../store/store'
 import { useSymbolData, useStockData, useStockNameData } from '../hooks/useStockData'
-// import { useStockData } from '../hooks/useStockData'
 import { flattenSymbolArray } from '../utils/flattenArray'
 
 const tickers = ['AAPL', 'MSFT', 'AMZN', 'TSLA', 'GOOGL', 'GOOG', 'BRK.B', 'UNH','JNJ', 'XOM', 'JPM', 'META', 'V', 'PG', 'NVDA', 'HD']

@@ -1,19 +1,17 @@
 import React from 'react'
 import { useNewQuoteStore } from '../../store/store'
-import { useSymbolData } from '../../hooks/useStockData'
 import { binarySearch } from '../../utils/binarySearch'
 import {AiOutlineClose} from 'react-icons/ai'
 
 type AppProps = {
   curr: string;
-  setCurrentSymbol: (sym: string) => void;
   setTickerList: (s: string[]) => void;
   tickerSymbols: string[];
   setLaunchModal: (b: boolean) => void;
   listOfSymbols: string[]
 }
 
-export const Modal = ({curr, setCurrentSymbol, setTickerList, tickerSymbols, setLaunchModal, listOfSymbols}: AppProps) => {
+export const Modal = ({curr, setTickerList, tickerSymbols, setLaunchModal, listOfSymbols}: AppProps) => {
   const addNewSymbol = useNewQuoteStore(state => state.addNewQuote)
   const setUserSymbols = useNewQuoteStore(state => state.setUserSymbols)
 
