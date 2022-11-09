@@ -20,7 +20,7 @@ const timeCheck = () => {
   if(h >= 15) {
     return false
   } else {
-    return 10000
+    return 20000
   }
 }
 
@@ -35,6 +35,7 @@ export const useStockData = (symbols) => {
         refetchOnMount: false,
         refetchOnWindowFocus: false,
         retry: false,
+        staleTime: 20000,
         onError: (error) => {
           console.log('Error fetching the symbol', error)
         }
@@ -54,6 +55,8 @@ export const useStockNameData = (symbols) => {
         refetchOnMount: false,
         refetchOnWindowFocus: false,
         retry: false,
+        staleTime: Infinity,
+
       }
     })
   })
@@ -64,6 +67,7 @@ export const useSymbolData = () => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     retry: false,
+    staleTime: Infinity,
   } )
 }
 
