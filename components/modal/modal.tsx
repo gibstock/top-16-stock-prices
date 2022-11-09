@@ -73,7 +73,7 @@ export const Modal = ({curr, setCurrentSymbol, setTickerSymbols, tickerSymbols, 
           <button className='bg-blue-500 px-3 py-2 mt-2 rounded-full w-full text-light-primary5 font-bold text-xl shadow-[0px_1px_4px] shadow-light-shadow  dark:shadow-dark-shadow' type='submit'>Add Quote</button>
         </form>
       </div>
-        <div className="absolute left-0 top-0 bg-black opacity-30 h-screen w-screen"></div>
+        <div className="fixed left-0 top-0 bg-black opacity-30 h-screen w-screen"></div>
     </>
   )
 }
