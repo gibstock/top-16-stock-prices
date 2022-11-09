@@ -15,7 +15,7 @@ export const Button = ({ children, rounded, version, onClick, size, px, py }: Pr
       case 'clear':
         return (
           <button
-            className="bg-transparent text-black dark:text-white px-5 py-3 rounded-full font-medium border border-black dark:border-white hover:bg-slate-200"
+            className="bg-transparent text-black dark:text-white px-5 py-3 rounded-full font-medium border border-black dark:border-white dark:hover:text-black hover:bg-slate-200"
             style={{ borderRadius: rounded, fontSize: size, paddingLeft: px, paddingRight: px, paddingTop: py, paddingBottom: py }}
             onClick={onClick}
           >

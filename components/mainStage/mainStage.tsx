@@ -41,7 +41,6 @@ export const MainStage = ({listOfSymbols, tickerList, setTickerList, queryResult
       {launchModal && 
         <Modal 
           curr={currentSymbol} 
-          setCurrentSymbol={setCurrentSymbol} 
           tickerSymbols={tickerList} 
           setLaunchModal={setLaunchModal} 
           listOfSymbols={listOfSymbols}
