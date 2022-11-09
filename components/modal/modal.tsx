@@ -7,54 +7,32 @@ import {AiOutlineClose} from 'react-icons/ai'
 type AppProps = {
   curr: string;
   setCurrentSymbol: (sym: string) => void;
-  setTickerSymbols: (s: string[]) => void;
+  setTickerList: (s: string[]) => void;
   tickerSymbols: string[];
   setLaunchModal: (b: boolean) => void;
   listOfSymbols: string[]
 }
 
-export const Modal = ({curr, setCurrentSymbol, setTickerSymbols, tickerSymbols, setLaunchModal, listOfSymbols}: AppProps) => {
+export const Modal = ({curr, setCurrentSymbol, setTickerList, tickerSymbols, setLaunchModal, listOfSymbols}: AppProps) => {
   const addNewSymbol = useNewQuoteStore(state => state.addNewQuote)
-  // const {data} = useSymbolData()
-  // let testArr: string[] = []
-  // const test = data?.data.map((sym: any) => {
-  //   testArr.push(sym.symbol)
-  // })
-
-  //@ts-ignore
-
-  // const checkSymbol = (haystack: Array<string>, needle: string): number | never =>  {
-  //   let starting: number = 0
-  //   let ending: number = haystack.length - 1
-  //   while (starting <= ending) {
-  //     let midPoint: number = Math.floor((starting + ending) / 2)
-
-  //     if(haystack[midPoint] === needle) {
-  //       return midPoint;
-  //     }
-  //     if(haystack[midPoint] < needle) {
-  //       starting = midPoint + 1
-  //     }
-  //     if(haystack[midPoint] > needle) {
-  //       ending = midPoint - 1
-  //     }
-  //   }
-  //   throw new Error('Value not in array') 
-
-  // }
+  const setUserSymbols = useNewQuoteStore(state => state.setUserSymbols)
 
   const handleAddQuoteClick = async (e: any) => {
+
     e.preventDefault()
+
     let searchTerm = e.target[0].value.toUpperCase()
+    console.log("search term",searchTerm)
     if(binarySearch(listOfSymbols, e.target[0].value.toUpperCase()) === -1) {
-      alert('Not a valid US Stock Exchange symbol')
+        alert('Not a valid US Stock Exchange symbol')
     } else {
-      const updatedSymbol = await addNewSymbol(searchTerm)
-      const index = tickerSymbols.findIndex(x => x === curr)
-      let copyOfTickers = [...tickerSymbols]
-      copyOfTickers[index] = searchTerm
-      setTickerSymbols(copyOfTickers)
-      setLaunchModal(false)
+        const updatedSymbol = await addNewSymbol(searchTerm)
+        const index = tickerSymbols.findIndex(x => x === curr)
+        let copyOfTickers = [...tickerSymbols]
+        copyOfTickers[index] = searchTerm
+        setTickerList(copyOfTickers)
+        setUserSymbols(copyOfTickers)
+        setLaunchModal(false)
     }
   }
 

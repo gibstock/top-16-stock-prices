@@ -20,7 +20,6 @@ const timeCheck = () => {
   if(h >= 15) {
     return false
   } else {
-    console.log('this is the else')
     return 10000
   }
 }
