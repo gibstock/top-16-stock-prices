@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useStockData, useStockNameData} from '../../hooks/useStockData'
 import { useNewQuoteStore } from '../../store/store'
 import { Card } from '../card'
-import { Modal } from '../modal/modal'
+// import { Modal } from '../modal/modal'
+import { Modal } from '../modal'
 
 type AppProps = {
   listOfSymbols: string[]
@@ -14,35 +15,23 @@ export const MainStage = ({listOfSymbols}: AppProps) => {
   const [tickerSymbols, setTickerSymbols] = useState(tickers)
   const [launchModal, setLaunchModal] = useState(false)
   const [currentSymbol, setCurrentSymbol] = useState('')
-  const [symbolsList, setSymbolsList] = useState([])
+  // const [symbolsList, setSymbolsList] = useState([])
 
-  const updatedSymbol = useNewQuoteStore(state => state.newQuote)
+  // const updatedSymbol = useNewQuoteStore(state => state.newQuote)
 
   const queryResults: any | unknown = useStockData(tickerSymbols)
   const nameResults: any | unknown = useStockNameData(tickerSymbols)
   // const {data: symbolsListResults, isInitialLoading: symbolLoading, isError, error} = useSymbolData()
   const { isInitialLoading: queryLoading} = queryResults
   const { isInitialLoading: nameLoading} = nameResults
-  // let refs = useRef([...new Array(16)].map(() => React.createRef()))
 
   const handleClick = (e:any) => {
-    const search = e.target.childNodes[0].data
-    setCurrentSymbol(search)
-    const index = tickerSymbols.findIndex(x => x === search)
-    setLaunchModal(!launchModal)
+    if(typeof e.target.getAttribute('data-symbol') === 'string') {
+      const search = e.target.childNodes[0].data
+      setCurrentSymbol(search)
+      setLaunchModal(!launchModal)
+    }
   }
-
-  // if(symbolLoading) return <h2>Data Loading...</h2>
-
-  // const flattenSymbolArray = (data: any | unknown) => {
-  //   let flattenedArray: string[] = []
-  //   data?.data?.map((sym:any) => {
-  //     flattenedArray.push(sym.symbol)
-  //   })
-  //   return flattenedArray
-  // }
-  // console.log("flat these results",flattenSymbolArray(symbolsListResults))
-
   if(queryLoading || nameLoading) return <h2>Data Loading...</h2>
 
   return (
@@ -51,8 +40,8 @@ export const MainStage = ({listOfSymbols}: AppProps) => {
         queryResults.map((result: any, i: number) => {
           return ( 
             //@ts-ignore
-            <div onClick={handleClick} className='h-44 rounded-xl p-4 bg-white dark:bg-dark-gray0 shadow-[0px_1px_4px] shadow-light-shadow dark:shadow-dark-shadow cursor-pointer' key={i}>
-              <Card tickers={tickerSymbols} result={result} index={i} name={nameResults[i]}/>
+            <div className='h-44 rounded-xl p-4 bg-white dark:bg-dark-gray0 shadow-[0px_1px_4px] shadow-light-shadow dark:shadow-dark-shadow' key={i}>
+              <Card handleClick={handleClick} tickers={tickerSymbols} result={result} index={i} name={nameResults[i]}/>
             </div>
         )})
       }

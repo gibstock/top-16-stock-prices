@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import { Button } from '../Button.components'
 import { useDarkModeStore} from '../../store/store'
 import {BsFillMoonFill, BsSunFill} from 'react-icons/bs'
 
@@ -14,7 +15,10 @@ export const Header: NextPage = () => {
           <h2 className='text-light-gray11 dark:text-dark-gray11 -mt-4'>Your Daily Cut</h2>
         </div>
       </div>
-      <div className='col-start-4 self-start justify-self-end font-semibold text-xl text-light-gray11 dark:text-dark-gray11 cursor-pointer' onClick={darkModeToggle}>{!dark ? <BsFillMoonFill /> : <BsSunFill />}</div>
+      <div className='flex flex-row items-center gap-4 col-start-4 self-start justify-self-end'>
+        <Button px='8px' py='4px' version='clear' size='1em'>Reset</Button>
+        <div className=' font-semibold text-xl text-light-gray11 dark:text-dark-gray11 cursor-pointer' onClick={darkModeToggle}>{!dark ? <BsFillMoonFill /> : <BsSunFill />}</div>
+      </div>
     </header>
   )
 }
