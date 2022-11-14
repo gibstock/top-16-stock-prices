@@ -5,6 +5,7 @@ import { useDarkModeStore } from '../store/store'
 import { useNewQuoteStore } from '../store/store'
 import { useSymbolData, useStockData, useStockNameData } from '../hooks/useStockData'
 import { flattenSymbolArray } from '../utils/flattenArray'
+import { loadingSpinner } from '../components'
 
 const tickers = ['AAPL', 'MSFT', 'AMZN', 'TSLA', 'GOOGL', 'GOOG', 'BRK.B', 'UNH','JNJ', 'XOM', 'JPM', 'META', 'V', 'PG', 'NVDA', 'HD']
 
@@ -38,7 +39,7 @@ const Home: NextPage = () => {
   }, [dark, tickerList])
 
   
-  if(isInitialLoading) return <h2>Data is Loading...</h2>
+  if(isInitialLoading) return <loadingSpinner.LoadingSpinner loading={isInitialLoading} />
   
   const listOfSymbols = flattenSymbolArray(data).sort()
 

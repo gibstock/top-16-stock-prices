@@ -1,6 +1,6 @@
 import React from 'react'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
-import {loadingSpinner} from '../../components'
+import { loadingScale } from '../../components'
 
 type AppProps = {
   tickers: string[],
@@ -42,7 +42,7 @@ export const Card = ({tickers, result, index, name, handleClick}: AppProps) => {
   const { isInitialLoading: nameLoading, isError: nameIsError, error: nameError } = name
   const { isInitialLoading: resultLoading, isError: resultIsError, error: resultError} = result
 
-  if(nameLoading || resultLoading) return <loadingSpinner.LoadingSpinner loading={nameLoading} />
+  if(nameLoading || resultLoading) return <loadingScale.LoadingScale loading={nameLoading} />
   if(nameIsError) {
     console.log(nameError.message)
   }

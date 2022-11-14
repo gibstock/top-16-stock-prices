@@ -1,4 +1,4 @@
-import ScaleLoader from 'react-spinners/ScaleLoader'
+import PacmanLoader from 'react-spinners/PacmanLoader'
 
 type AppProps = {
   loading: boolean;
@@ -6,10 +6,10 @@ type AppProps = {
 
 export const LoadingSpinner = ({loading}: AppProps) => {
   return (
-    <>
-      <ScaleLoader 
+    <div className='flex flex-col justify-center items-center w-screen h-screen'>
+      <PacmanLoader 
         loading={loading}
       />
-    </>
+    </div>
   )
 }
