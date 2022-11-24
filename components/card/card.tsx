@@ -55,7 +55,7 @@ export const Card = ({tickers, result, index, name, handleClick}: AppProps) => {
       <div className='w-full flex flex-row items-center justify-between'>
         <div className='flex flex-col items-start'>
           <div className='flex flex-row justify-center items-center gap-2'>
-            <div className='font-semibold text-base text-light-gray11 dark:text-dark-gray11 outline outline-1 outline-black px-1 rounded-lg cursor-pointer shadow-[0px_3px_4px] shadow-light-shadow  dark:shadow-dark-shadow hover:bg-light-primary5' onClick={handleClick} data-symbol={tickers[index]}>{tickers[index]}</div>
+            <div className='font-semibold text-base text-light-gray11 dark:text-dark-gray11 outline outline-1 outline-black dark:outline-white px-1 rounded-lg cursor-pointer shadow-[0px_3px_4px] shadow-light-shadow  dark:shadow-dark-shadow hover:bg-light-primary5' onClick={handleClick} data-symbol={tickers[index]}>{tickers[index]}</div>
             <div className='flex flex-row items-center gap-2 text-xs text-[#a0a0a0]'><AiOutlineArrowLeft /> Click to change</div>
           </div>
           <div className='text-light-gray8 dark:text-dark-gray8'>{name?.data?.data.name}</div>

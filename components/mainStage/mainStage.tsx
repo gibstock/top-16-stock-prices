@@ -28,7 +28,7 @@ export const MainStage = ({listOfSymbols, tickerList, setTickerList, queryResult
   if(queryLoading || nameLoading) return <h2>Data Loading...</h2>
 
   return (
-    <div className='lg:grid lg:grid-cols-4 mt-6 gap-3 flex flex-col'>
+    <div className='lg:grid lg:grid-cols-4 mt-0 gap-3 flex flex-col'>
       {
         queryResults.map((result: any, i: number) => {
           return ( 

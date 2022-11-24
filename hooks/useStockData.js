@@ -17,10 +17,15 @@ export const fetchSymbols = () => {
 const timeCheck = () => {
   const d = new Date()
   const h = d.getHours()
-  if(h >= 15) {
+  const day = d.getDay()
+  if(day === 0 || day === 6) {
     return false
   } else {
-    return 20000
+    if(h >= 15) {
+      return false
+    } else {
+      return 20000
+    }
   }
 }
 

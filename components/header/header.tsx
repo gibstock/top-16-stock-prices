@@ -21,9 +21,7 @@ export const Header: NextPage = () => {
     <header className='grid grid-cols-4'>
       <div className='col-start-2 col-span-2 flex flex-row justify-center items-center text-light-gray11 md:col-start-1 md:col-span-1 md:justify-self-start'>
         <div className='flex flex-col justify-start items-center self-start'>
-          <h1 className='font-bold text-2xl text-light-gray11 dark:text-dark-gray11'>Stock Chops</h1>
-          <img className='w-[150px]' src="/steak.png" alt="" />
-          <h2 className='text-light-gray11 dark:text-dark-gray11 -mt-4'>Your Daily Cut</h2>
+          <img className='w-[350px] -my-[]' src={dark ? "/stock-chops-v3.png" : "/stock-chops-v2.png"} alt="" />
         </div>
       </div>
       <div className='flex flex-row items-center gap-4 col-start-4 self-start justify-self-end'>
