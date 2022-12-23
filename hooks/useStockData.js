@@ -11,7 +11,7 @@ export const fetchCompanyName = (symbol) => {
 }
 
 export const fetchSymbols = () => {
-  return axios.get(`${process.env.NEXT_PUBLIC_FINNHUB_BASE_URL}/stock/symbol?exchange=US&mic=XNYS&token=${process.env.NEXT_PUBLIC_FINNHUB_API_KEY}`)
+  return axios.get(`${process.env.NEXT_PUBLIC_FINNHUB_BASE_URL}/stock/symbol?exchange=US&token=${process.env.NEXT_PUBLIC_FINNHUB_API_KEY}`)
 }
 
 const timeCheck = () => {
